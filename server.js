@@ -9,9 +9,9 @@ const BasicStrategy = require('passport-http').BasicStrategy;
 const keys = require('./keys.json')
 
 const app = express()
-const port = 3000
+//const port = 3000
 // port for runnin on heroku:
-//const port = (process.env.PORT || 80);
+const port = (process.env.PORT || 80);
 
 const products = require('./routes/products')
 
