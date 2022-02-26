@@ -1,0 +1,243 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "singleProductSchema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "productId": "testProductId",
+            "title": "Banaani",
+            "description": "lasinen Banaani koriste.",
+            "category": "Koristeet",
+            "images": [
+                "sodg35tyh35yhn4y523q",
+                "fweijn35y35ny35j3n4i2"
+            ],
+            "price": 105.5,
+            "doesShipping": false,
+            "userId": "testUserId",
+            "username": "Super_man",
+            "firstName": "Matti",
+            "lastName": "Merkillinen",
+            "email": "matti.merk@example.com",
+            "phone": 4565465445,
+            "city": "Oulu",
+            "zip": 90440,
+            "addres": "tie 14 A 2",
+            "postDate": "2022-02-05"
+        }
+    ],
+    "required": [
+        "productId",
+        "title",
+        "description",
+        "category",
+        "images",
+        "price",
+        "doesShipping",
+        "userId",
+        "username",
+        "firstName",
+        "lastName",
+        "email",
+        "phone",
+        "city",
+        "zip",
+        "addres",
+        "postDate"
+    ],
+    "properties": {
+        "productId": {
+            "$id": "#/properties/productId",
+            "type": "string",
+            "title": "The productId schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "testProductId"
+            ]
+        },
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string",
+            "title": "The title schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Banaani"
+            ]
+        },
+        "description": {
+            "$id": "#/properties/description",
+            "type": "string",
+            "title": "The description schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "lasinen Banaani koriste."
+            ]
+        },
+        "category": {
+            "$id": "#/properties/category",
+            "type": "string",
+            "title": "The category schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Koristeet"
+            ]
+        },
+        "images": {
+            "$id": "#/properties/images",
+            "type": "array",
+            "title": "The images schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    "sodg35tyh35yhn4y523q",
+                    "fweijn35y35ny35j3n4i2"
+                ]
+            ],
+            "items": {
+                "$id": "#/properties/images/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/images/items/anyOf/0",
+                        "type": "string",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "sodg35tyh35yhn4y523q",
+                            "fweijn35y35ny35j3n4i2"
+                        ]
+                    }
+                ]
+            }
+        },
+        "price": {
+            "$id": "#/properties/price",
+            "type": "number",
+            "title": "The price schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0.0,
+            "examples": [
+                105.5
+            ]
+        },
+        "doesShipping": {
+            "$id": "#/properties/doesShipping",
+            "type": "boolean",
+            "title": "The doesShipping schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": false,
+            "examples": [
+                false
+            ]
+        },
+        "userId": {
+            "$id": "#/properties/userId",
+            "type": "string",
+            "title": "The userId schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "testUserId"
+            ]
+        },
+        "username": {
+            "$id": "#/properties/username",
+            "type": "string",
+            "title": "The username schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Super_man"
+            ]
+        },
+        "firstName": {
+            "$id": "#/properties/firstName",
+            "type": "string",
+            "title": "The firstName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Matti"
+            ]
+        },
+        "lastName": {
+            "$id": "#/properties/lastName",
+            "type": "string",
+            "title": "The lastName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Merkillinen"
+            ]
+        },
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "title": "The email schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "matti.merk@example.com"
+            ]
+        },
+        "phone": {
+            "$id": "#/properties/phone",
+            "type": "integer",
+            "title": "The phone schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                4565465445
+            ]
+        },
+        "city": {
+            "$id": "#/properties/city",
+            "type": "string",
+            "title": "The city schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Oulu"
+            ]
+        },
+        "zip": {
+            "$id": "#/properties/zip",
+            "type": "integer",
+            "title": "The zip schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                90440
+            ]
+        },
+        "addres": {
+            "$id": "#/properties/addres",
+            "type": "string",
+            "title": "The addres schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "tie 14 A 2"
+            ]
+        },
+        "postDate": {
+            "$id": "#/properties/postDate",
+            "type": "string",
+            "title": "The postDate schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "2022-02-05"
+            ]
+        }
+    },
+    "additionalProperties": false
+}

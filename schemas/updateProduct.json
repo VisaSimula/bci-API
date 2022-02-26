@@ -1,0 +1,111 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "updateProductSchema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "title": "veitsi",
+            "description": "Uusi ja hieno veitsi.",
+            "category": "Aterimet",
+            "images": [
+                "sodfiuhgjbsudhbgu3asdw4y523q",
+                "fweijni23n4i2j3n4i2asdasdaq24"
+            ],
+            "price": 5.5,
+            "doesShipping": true
+        }
+    ],
+    "required": [
+        "title",
+        "description",
+        "category",
+        "images",
+        "price",
+        "doesShipping"
+    ],
+    "properties": {
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string",
+            "title": "The title schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "veitsi"
+            ]
+        },
+        "description": {
+            "$id": "#/properties/description",
+            "type": "string",
+            "title": "The description schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Uusi ja hieno veitsi."
+            ]
+        },
+        "category": {
+            "$id": "#/properties/category",
+            "type": "string",
+            "title": "The category schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Aterimet"
+            ]
+        },
+        "images": {
+            "$id": "#/properties/images",
+            "type": "array",
+            "title": "The images schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    "sodfiuhgjbsudhbgu3asdw4y523q",
+                    "fweijni23n4i2j3n4i2asdasdaq24"
+                ]
+            ],
+            "items": {
+                "$id": "#/properties/images/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/images/items/anyOf/0",
+                        "type": "string",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "sodfiuhgjbsudhbgu3asdw4y523q",
+                            "fweijni23n4i2j3n4i2asdasdaq24"
+                        ]
+                    }
+                ]
+            }
+        },
+        "price": {
+            "$id": "#/properties/price",
+            "type": "number",
+            "title": "The price schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0.0,
+            "examples": [
+                5.5
+            ]
+        },
+        "doesShipping": {
+            "$id": "#/properties/doesShipping",
+            "type": "boolean",
+            "title": "The doesShipping schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": false,
+            "examples": [
+                true
+            ]
+        }
+    },
+    "additionalProperties": false
+}

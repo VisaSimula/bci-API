@@ -1,0 +1,125 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "newUserSchema",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "username": "Super_kid",
+            "firstName": "Marcel",
+            "lastName": "Merkillinen",
+            "phone": 45011111111,
+            "email": "marc.merk@example.com",
+            "city": "Oulu",
+            "zip": 90440,
+            "addres": "tie 12 A 4",
+            "password": "password"
+        }
+    ],
+    "required": [
+        "username",
+        "firstName",
+        "lastName",
+        "phone",
+        "email",
+        "city",
+        "zip",
+        "addres",
+        "password"
+    ],
+    "properties": {
+        "username": {
+            "$id": "#/properties/username",
+            "type": "string",
+            "title": "The username schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Super_kid"
+            ]
+        },
+        "firstName": {
+            "$id": "#/properties/firstName",
+            "type": "string",
+            "title": "The firstName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Marcel"
+            ]
+        },
+        "lastName": {
+            "$id": "#/properties/lastName",
+            "type": "string",
+            "title": "The lastName schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Merkillinen"
+            ]
+        },
+        "phone": {
+            "$id": "#/properties/phone",
+            "type": "integer",
+            "title": "The phone schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                45011111111
+            ]
+        },
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "title": "The email schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "marc.merk@example.com"
+            ]
+        },
+        "city": {
+            "$id": "#/properties/city",
+            "type": "string",
+            "title": "The city schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Oulu"
+            ]
+        },
+        "zip": {
+            "$id": "#/properties/zip",
+            "type": "integer",
+            "title": "The zip schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "examples": [
+                90440
+            ]
+        },
+        "addres": {
+            "$id": "#/properties/addres",
+            "type": "string",
+            "title": "The addres schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "tie 12 A 4"
+            ]
+        },
+        "password": {
+            "$id": "#/properties/password",
+            "type": "string",
+            "title": "The password schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "password"
+            ]
+        }
+    },
+    "additionalProperties": false
+}
