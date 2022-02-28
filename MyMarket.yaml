@@ -1,0 +1,623 @@
+openapi: 3.1.0
+info:
+  title: MyMarket
+  version: '1.0'
+  summary: Market type Api for graded excercise
+  description: ''
+  contact:
+    name: Visa Simula
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /login:
+    post:
+      summary: Login for users.
+      operationId: post-users-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                required:
+                  - token
+              examples:
+                example-1:
+                  value:
+                    token: p2i3jn546pio2u45n62iu4n62i43u5n6
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthorized
+      description: ''
+      security:
+        - basic: []
+    parameters: []
+  /users:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '201':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                example-1:
+                  value:
+                    userId: 134
+                    userName: Super_man
+                    firstName: Matti
+                    lastName: Merkillinen
+                    phone: 4565465445
+                    email: matti.merk@example.com
+                    emailVerified: true
+                    city: Oulu
+                    zip: 90440
+                    addres: tie 14 A 2
+        '400':
+          description: Missing Required Information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+              examples:
+                example-1:
+                  value:
+                    errorDescription: Missing information!
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+            examples:
+              example:
+                value:
+                  firstName: Matti
+                  lastName: Merkillinen
+                  phone: 4565465445
+                  email: matti.merk@example.com
+                  emailVerified: true
+                  city: Oulu
+                  zip: 90440
+                  addres: tie 12 A 4
+                  userName: Super_man
+                  password: testi123
+        description: Post the necessary fields for the API to create a new user.
+      description: Create a new user.
+    parameters: []
+  /products:
+    post:
+      summary: Post new product to be listed.
+      operationId: post-products
+      responses:
+        '201':
+          description: new item Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                example-1:
+                  value:
+                    productId: 3165
+                    userId: 134
+                    title: Lusikka
+                    description: uusi ja hieno lusikka.
+                    category: Aterimet
+                    userName: Super_man
+                    email: matti.merk@example.com
+                    phone: 4565465445
+                    city: Oulu
+                    zip: 90440
+                    addres: tie 12 A 4
+                    images:
+                      - afuhb324kui5b23ubf
+                      - sdfjnaiwe4unt3oin234
+                      - nksdjfnkasd3252egfsg
+                    price: 15.5
+                    doesShipping: true
+                    postDate: '2019-08-24'
+        '400':
+          description: missing required information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newProduct'
+            examples:
+              example-1:
+                value:
+                  title: Lusikka
+                  description: Uusi ja hieno lusikka.
+                  category: Aterimet
+                  images:
+                    - jhbkisuaeybrfuw3y4325
+                    - dfasdfjhb3ujk45asdaad
+                  price: 10.5
+                  doesShipping: true
+        description: ''
+      security:
+        - JWT: []
+    get:
+      summary: get all the products listed
+      operationId: get-products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+              examples:
+                example-1:
+                  value:
+                    - productId: 3c06bb32-d794-4bf3-a2f0-db68a9874ce8
+                      title: Haarukka
+                      description: Uusi ja hieno haarukka.
+                      category: Aterimet
+                      images:
+                        - sodfiuhgjbsudhbgu3w4y523q
+                        - fweijni23n4i2j3n4i2
+                      price: 15.5
+                      doesShipping: false
+                      userId: 689d29e5-afaf-4cc8-a621-bd327cdae40b
+                      username: Super_kid
+                      firstName: Marcel
+                      lastName: Merkillinen
+                      email: marc.merk@example.com
+                      phone: 45011111111
+                      city: Oulu
+                      zip: 90440
+                      addres: tie 12 A 4
+                      postDate: '2022-1-25'
+        '404':
+          description: Not Found
+      parameters:
+        - schema:
+            type: string
+          in: query
+  '/products/{productId}':
+    parameters:
+      - schema:
+          type: string
+        name: productId
+        in: path
+        required: true
+    delete:
+      summary: delete product
+      operationId: delete-products-productId
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+      security:
+        - JWT: []
+    put:
+      summary: update product
+      operationId: put-products-productId
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Missing Required Information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateProduct'
+            examples: {}
+      security:
+        - JWT: []
+    get:
+      summary: get single product
+      operationId: get-products-productId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                example-1:
+                  value:
+                    productId: 3c06bb32-d794-4bf3-a2f0-db68a9874ce8
+                    title: Haarukka
+                    description: Uusi ja hieno haarukka.
+                    category: Aterimet
+                    images:
+                      - sodfiuhgjbsudhbgu3w4y523q
+                      - fweijni23n4i2j3n4i2
+                    price: 15.5
+                    doesShipping: false
+                    userId: 689d29e5-afaf-4cc8-a621-bd327cdae40b
+                    username: Super_kid
+                    firstName: Marcel
+                    lastName: Merkillinen
+                    email: marc.merk@example.com
+                    phone: 45011111111
+                    city: Oulu
+                    zip: 90440
+                    addres: tie 12 A 4
+                    postDate: '2022-1-25'
+        '404':
+          description: Not Found
+  /products/search:
+    get:
+      summary: Get items with searched category
+      tags: []
+      responses: {}
+      operationId: get-products-search
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: list items with certain category.
+        - schema:
+            type: string
+          in: query
+          name: location
+          description: list items with certain location
+        - schema:
+            type: string
+          in: query
+          name: datePost
+          description: liste items with certain date of posting.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+            examples:
+              example-1:
+                value:
+                  - productId: 3c06bb32-d794-4bf3-a2f0-db68a9874ce8
+                    title: Haarukka
+                    description: Uusi ja hieno haarukka.
+                    category: Aterimet
+                    images:
+                      - sodfiuhgjbsudhbgu3w4y523q
+                      - fweijni23n4i2j3n4i2
+                    price: 15.5
+                    doesShipping: false
+                    userId: 689d29e5-afaf-4cc8-a621-bd327cdae40b
+                    username: Super_kid
+                    firstName: Marcel
+                    lastName: Merkillinen
+                    email: marc.merk@example.com
+                    phone: 45011111111
+                    city: Oulu
+                    zip: 90440
+                    addres: tie 12 A 4
+                    postDate: '2022-1-25'
+components:
+  schemas:
+    NewUser:
+      title: NewUser
+      type: object
+      description: ''
+      examples:
+        - userName: Super_man
+          firstName: Matti
+          lastName: Merkillinen
+          phone: 4565465445
+          email: matti.merk@example.com
+          city: Oulu
+          zip: 90440
+          addres: tie 12 A 4
+          password: testi123
+      properties:
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: number
+        email:
+          type: string
+          format: email
+        city:
+          type: string
+        zip:
+          type: number
+        addres:
+          type: string
+        password:
+          type: string
+      required:
+        - userName
+        - firstName
+        - lastName
+        - phone
+        - email
+        - city
+        - zip
+        - addres
+        - password
+    User:
+      title: User
+      type: object
+      description: ''
+      examples:
+        - userId: 134
+          userName: Super_man
+          firstName: Matti
+          lastName: Merkillinen
+          phone: 4565465445
+          email: matti.merk@example.com
+          emailVerified: true
+          city: Oulu
+          zip: 90440
+          addres: tie 14 A 2
+      properties:
+        userId:
+          type: string
+          description: unique ID for user given by server
+        userName:
+          type: string
+          description: username visible for everyone
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: number
+        email:
+          type: string
+          format: email
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        city:
+          type: string
+        zip:
+          type: number
+        addres:
+          type: string
+      required:
+        - userName
+        - firstName
+        - lastName
+        - phone
+        - email
+        - city
+        - zip
+        - addres
+    newProduct:
+      description: ''
+      type: object
+      x-examples:
+        example-1:
+          productId: 3165
+          userId: 134
+          title: Lusikka
+          description: uusi ja hieno lusikka.
+          category: Aterimet
+          userName: Super_man
+          email: matti.merk@example.com
+          phone: 4565465445
+          city: Oulu
+          zip: 90440
+          addres: tie 12 A 4
+          images:
+            - afuhb324kui5b23ubf
+            - sdfjnaiwe4unt3oin234
+            - nksdjfnkasd3252egfsg
+          price: 15.5
+          doesShipping: true
+          postDate: '2019-08-24'
+      examples:
+        - title: Lusikka
+          description: kaunis lusikka
+          category: Aterimet
+          images:
+            - uhjbiukYH
+            - 87h23ubu
+            - jhbkjhbjub
+            - jhbdsolfu8
+          price: 10.15
+          doesShipping: true
+      properties:
+        title:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+        category:
+          type: string
+          minLength: 1
+        images:
+          type: array
+          maxItems: 4
+          items:
+            type: string
+        price:
+          type: number
+        doesShipping:
+          type: boolean
+      required:
+        - title
+        - description
+        - category
+        - images
+        - price
+        - doesShipping
+    Product:
+      title: Product
+      type: object
+      examples:
+        - productId: 3c06bb32-d794-4bf3-a2f0-db68a9874ce8
+          title: Haarukka
+          description: Uusi ja hieno haarukka.
+          category: Aterimet
+          images:
+            - sodfiuhgjbsudhbgu3w4y523q
+            - fweijni23n4i2j3n4i2
+          price: 15.5
+          doesShipping: false
+          userId: 689d29e5-afaf-4cc8-a621-bd327cdae40b
+          username: Super_kid
+          firstName: Marcel
+          lastName: Merkillinen
+          email: marc.merk@example.com
+          phone: 45011111111
+          city: Oulu
+          zip: 90440
+          addres: tie 12 A 4
+          postDate: '2022-1-25'
+      properties:
+        productId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        images:
+          type: array
+          maxItems: 4
+          items:
+            type: string
+        price:
+          type: number
+        doesShipping:
+          type: boolean
+        userId:
+          type: string
+        userName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: number
+        city:
+          type: string
+        zip:
+          type: number
+        addres:
+          type: string
+        postDate:
+          type: string
+          format: date
+      required:
+        - productId
+        - title
+        - description
+        - category
+        - images
+        - price
+        - doesShipping
+        - userId
+        - userName
+        - firstName
+        - lastName
+        - email
+        - phone
+        - city
+        - zip
+        - addres
+        - postDate
+    updateProduct:
+      title: Product
+      type: object
+      examples:
+        - productId: huj34bv5u1234b5
+          title: Lusikka
+          description: kaunis lusikka
+          category: Aterimet
+          images:
+            - uhjbiukYH
+            - 87h23ubu
+            - jhbkjhbjub
+            - jhbdsolfu8
+          price: 10.15
+          doesShipping: true
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        images:
+          type: array
+          maxItems: 4
+          items:
+            type: string
+        price:
+          type: number
+        doesShipping:
+          type: boolean
+      required:
+        - title
+        - description
+        - category
+        - images
+        - price
+        - doesShipping
+    Login:
+      title: Login
+      type: object
+      properties:
+        userName:
+          type: string
+        password:
+          type: string
+      required:
+        - userName
+        - password
+      examples:
+        - userName: Super_man
+          password: testi123
+    BadRequest:
+      title: BadRequest
+      type: object
+      properties:
+        errorDescription:
+          type: string
+      examples:
+        - errorDescription: Missing information!
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+    basic:
+      type: http
+      scheme: basic
